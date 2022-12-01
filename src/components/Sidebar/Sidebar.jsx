@@ -43,7 +43,7 @@ const SideBar = ({ setMobileOpen }) => {
               <ListItemText primary={label} />
             </ListItem>
           </Link>
-        ))};
+        ))}
       </List>
       <Divider />
       <List>
