@@ -1,10 +1,16 @@
+import { ClassNames } from '@emotion/react';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../features/auth';
+import useStyles from './styles';
 
 const Profile = () => {
-  console.log('Profile');
+  const classes = useStyles();
+  const { user } = useSelector(userSelector);
+  console.log(user);
   return (
-    <div>
-      Profile
+    <div className={classes.yo}>
+      Profile - {user.username}
     </div>
   );
 };
