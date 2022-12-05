@@ -23,7 +23,7 @@ const Profile = () => {
           Logout &nbsp; <ExitToApp />
         </Button>
       </Box>
-      {!favoriteMovies.length ? <Typography variant="h5">Add Favorites Or Watchlist Movies To See Them Here!</Typography> : <Box>Favorite Movies</Box>}
+      {!favoriteMovies.length ? <Typography variant="h5">Add Movies To Your Favorites!</Typography> : <Box>Favorite Movies</Box>}
     </Box>
   );
 };
