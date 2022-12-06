@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import genreIcons from '../../assets/genres';
-import { useGetMovieQuery } from '../../services/TMDB';
+import { MovieList } from '..';
+import { useGetMovieQuery, useGetRecommendationsQuery } from '../../services/TMDB';
 import useStyles from './styles';
 
 const MovieInformation = () => {
@@ -14,6 +15,7 @@ const MovieInformation = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { data, isFetching, error } = useGetMovieQuery(id);
+  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id });
   const isMovieFavorited = false;
   const isMovieWatchlisted = false;
 
@@ -78,7 +80,7 @@ const MovieInformation = () => {
           ))}
         </Grid>
         <Typography variant="h5" gutterBottom style={{ marginTop: '10px' }}>
-          Overview
+          Overview:
         </Typography>
         <Typography style={{ marginBottom: '2rem' }}>
           {data?.overview}
@@ -118,6 +120,14 @@ const MovieInformation = () => {
           </div>
         </Grid>
       </Grid>
+      <Box marginTop="5rem" width="100%">
+        <Typography variant="h3" align="center" gutterBottom>
+          Similar Movies:
+        </Typography>
+        {recommendations
+          ? <MovieList movies={recommendations} numberOfMovies={12} />
+          : <Box>Sorry, Nothing Was Found</Box>}
+      </Box>
     </Grid>
   );
 };
