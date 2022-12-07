@@ -3,11 +3,11 @@ import { TextField, InputAdornment } from '@mui/material';
 import { Search as SearchIcons } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { ClassNames } from '@emotion/react';
 import { searchMovie } from '../../features/currentGenreOrCategory';
 import useStyles from './styles';
 
 const Search = () => {
+  const location = useLocation();
   const [query, setQuery] = useState('');
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const Search = () => {
       dispatch(searchMovie(query));
     }
   };
+  if (location.pathname !== '/') return null;
   return (
     <div className={classes.searchContainer}>
       <TextField
